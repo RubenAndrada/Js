@@ -1,6 +1,18 @@
+class Nombre {
+    constructor(nombre){
+        this.nombre = nombre;
+    }
+    mostrarInfo(){
+        return ` ${this.nombre}`
+    }
+}
 
-let nombre = prompt("Ingrese su Nombre")
-alert(`Bienvenido ${nombre}, que desea llevar?`)
+const coderhouse = new Nombre(prompt("Ingrese su nombre"))
+
+
+
+alert(`Bienvenido ${coderhouse.mostrarInfo()}, que desea llevar?`)
+
 
 let pedidos
 let i = 1
@@ -43,11 +55,14 @@ switch(pedidos){
 menu(pedidos)
 
 function hamburguesa(){
-    tipodehamburguesa = prompt(`${nombre} Elija que clase de hamburguesa quiere:
+    tipodehamburguesa = prompt(`${coderhouse.mostrarInfo()} Elija que clase de hamburguesa quiere:
     1: Simple $500
     2: Jamon y queso $900
     3: Chedar, panceta, huevo frito $1200
-    4: Volver a eleguir del menu`)
+    4: Volver a eleguir del menu
+    5: Cancelar pedido`)
+    
+    
     
     
 switch(tipodehamburguesa){
@@ -94,7 +109,7 @@ switch(tipodehamburguesa){
 
 
 function pizza(){
-    tipodepizza = prompt(`${nombre} Elija que clase de pizza quiere:
+    tipodepizza = prompt(`${coderhouse.mostrarInfo()} Elija que clase de pizza quiere:
     1: Muzzarela $1000
     2: Napolitana $1400
     3: Calabresa $1600
@@ -163,7 +178,7 @@ switch(tipodepizza){
 } 
 }
 function papasfritas(){
-    tipodepapasfritas = prompt(`${nombre} Elija que clase de papas fritas quiere:
+    tipodepapasfritas = prompt(`${coderhouse.mostrarInfo()} Elija que clase de papas fritas quiere:
     1: Simple $300
     2: Chedar $400
     3: Chedar y panceta $500
@@ -221,7 +236,7 @@ switch(tipodepapasfritas){
 } 
 }
 function bebidas(){
-    tipoDeBebidas = prompt(`${nombre} Elija que clase de bebida quiere:
+    tipoDeBebidas = prompt(`${coderhouse.mostrarInfo()} Elija que clase de bebida quiere:
     1: Agua 500ml $150
     2: Coca cola 500ml $300
     3: Sprite 500ml $300
@@ -265,27 +280,36 @@ switch(tipoDeBebidas){
 
 } 
 }
+let suma = tipodehamburguesa + tipodepizza + tipodepapasfritas + tipoDeBebidas
+const carrito = [
+    {menu: `${hambur} ${piza} ${frita} ${bebida}`, precio: suma},
+    
+    
+]
 
-cuenta = (tipodehamburguesa + tipodepapasfritas + tipodepizza + tipoDeBebidas)
-alert(`${nombre} su pedido esta compuesto por: 
+let cuenta = carrito.reduce((accum, p)=>{
+return accum + p.precio
+}, 0)
+
+alert(`${coderhouse.mostrarInfo()} su pedido esta compuesto por: 
 ${hambur} 
 ${piza} 
 ${frita} 
 con ${bebida}
 Total a pagar` + " " + cuenta )
 
-let dinero = Number(prompt(`${nombre} Ingrese cuanto efectivo tiene`))
+let dinero = Number(prompt(`${coderhouse.mostrarInfo()} Ingrese cuanto efectivo tiene`))
 let vuelto = dinero - cuenta
 let tarjeta = true
 
 if ( dinero >= cuenta){
     alert( " Puede pagar en efectivo")
-    alert( `Pago realizado, ${nombre} disfrute su comida y vuelva pronto.
+    alert( `Pago realizado, ${coderhouse.mostrarInfo()} disfrute su comida y vuelva pronto.
     Su vuelto es de $` + " " + vuelto)
 }
 else if (tarjeta){
     alert( "Puede pagar con tarjeta")
-    alert(`Pago realizado, ${nombre} disfrute su comida y vuelva pronto.`)
+    alert(`Pago realizado, ${coderhouse.mostrarInfo()} disfrute su comida y vuelva pronto.`)
 }
 else{
     alert("Dinero insuficiente")
